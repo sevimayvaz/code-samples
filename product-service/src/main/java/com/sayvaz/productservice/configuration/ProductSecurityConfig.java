@@ -34,10 +34,16 @@ public class ProductSecurityConfig extends WebSecurityConfigurerAdapter{
 	@Value("${auth.queries.create-role-query}")
 	private String createRoleQuery;
 	
+//	@Bean
+//	public PasswordEncoder passwordEncoder() {
+//		return new BCryptPasswordEncoder();
+//	}
+	
 	@Bean
 	public PasswordEncoder passwordEncoder() {
-		return new BCryptPasswordEncoder();
+		return ProductPasswordEncoderFactories.createDelegatingPasswordEncoder();
 	}
+	
 	
 	@Bean
 	public JdbcUserDetailsManager jdbcUserDetailsManager() throws Exception {
